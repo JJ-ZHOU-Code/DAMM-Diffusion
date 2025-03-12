@@ -75,16 +75,3 @@ python train_diffusion.py --data_name <DATA_NAME> --path_root <PATH_ROOT> --img_
 We would like to thank the following repositories for their great works:
 - [medfusion](https://github.com/mueller-franzes/medfusion)
 - [ddpm](https://github.com/mueller-franzes/medfusion?tab=readme-ov-file)
-
-<!-- ## License & Citation
-This project is licensed under the Apache-2.0 License.
-
-If you find this work useful, please cite our paper:
-```
-@inproceedings{zhang2023prototypical,
-  title={Prototypical Information Bottlenecking and Disentangling for Multimodal Cancer Survival Prediction},
-  author={Zhang, Yilan and Xu, Yingxue and Chen, Jianqi and Xie, Fengying and Chen, Hao},
-  booktitle={The Twelfth International Conference on Learning Representations},
-  year={2024}
-}
-``` -->

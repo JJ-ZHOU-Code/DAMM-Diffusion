@@ -13,7 +13,7 @@ import numpy as np
 # import torchio as tio 
 
 from diffusion.data.datamodules import SimpleDataModule
-from diffusion.data.datasets import MyDataset2D, DatasetFoldk
+from diffusion.data.datasets import Dataset_Paired
 from diffusion.external.stable_diffusion.unet_openai import UNetModel
 from diffusion.models.noise_schedulers import GaussianNoiseScheduler
 from diffusion.models.embedders import LabelEmbedder, TimeEmbbeding
@@ -24,32 +24,27 @@ import torch.multiprocessing
 torch.multiprocessing.set_sharing_strategy('file_system')
 
 import argparse 
-parser = argparse.ArgumentParser(description='Configurations.')
+parser = argparse.ArgumentParser(description='Configurations for training the diffusion model.')
 
 ### Checkpoint + Misc. Pathing Parameters
-parser.add_argument('--fold_idx', type=int, help='dataset name to train the vae, i.e., DAPI')
+parser.add_argument('--path_root', type=str, help='Root directory where dataset files are stored.')
+parser.add_argument('--batchsize', type=int, default=32, help='Batch size for training.')
+parser.add_argument('--num_workers', type=int, default=8, help='Number of worker processes for data loading.')
 
-parser.add_argument('--data_name', type=str,help='dataset name to train the vae, i.e., DAPI')
-parser.add_argument('--path_root', type=str,help='Data directory')
-parser.add_argument('--batchsize', type=int, default=32, help='batchsize')
-parser.add_argument('--num_workers', type=int, default=8, help='num_workers')
-parser.add_argument('--NeedFoldk', type=bool, default=True, help='NeedFoldk')
-parser.add_argument('--isTrain', type=bool, default=True, help='CTransPath, RN50-B')
+parser.add_argument('--img_size', type=int, default=256, help='Image size.')
 
-
-parser.add_argument('--ckp_dapi', type=str, help='Data directory')
-parser.add_argument('--ckp_vessels', type=str, help='Data directory')
-parser.add_argument('--ckp_nuclei', type=str, help='Data directory')
+### Checkpoint Paths
+parser.add_argument('--ckp_dapi', type=str, help='Path to the checkpoint file for the DAPI model.')
+parser.add_argument('--ckp_vessels', type=str, help='Path to the checkpoint file for the vessels model.')
+parser.add_argument('--ckp_nuclei', type=str, help='Path to the checkpoint file for the nuclei model.')
 
 args = parser.parse_args()
 
 if __name__ == "__main__":
     # ------------ Load Data ----------------
-    ds = DatasetFoldk(
-        foldk=args.fold_idx,
-        NeedFoldk=args.NeedFoldk,
-        isTrain = args.isTrain,
-        path_root = args.path_root
+    ds = Dataset_Paired(
+        path_root = args.path_root,
+        image_resize = args.img_size
     )
 
     dm = SimpleDataModule(

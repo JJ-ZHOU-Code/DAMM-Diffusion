@@ -11,21 +11,20 @@ from pytorch_lightning.callbacks import EarlyStopping, ModelCheckpoint
 
 
 from diffusion.data.datamodules import SimpleDataModule
-from diffusion.data.datasets import MyDataset2D, DatasetFoldk
+from diffusion.data.datasets import Dataset_Paired
 from diffusion.models.embedders.latent_embedders import VQVAE, VQGAN, VAE, VAEGAN, CLIP_VAE
 
 import torch.multiprocessing
 torch.multiprocessing.set_sharing_strategy('file_system')
 
 import argparse 
-parser = argparse.ArgumentParser(description='Configurations.')
+parser = argparse.ArgumentParser(description='Configurations for training the latent embedding model.')
 
-parser.add_argument('--data_name', type=str,help='dataset name to train the vae, i.e., DAPI')
-parser.add_argument('--path_root', type=str,help='Data directory')
-parser.add_argument('--batchsize', type=int, default=4, help='batchsize')
-parser.add_argument('--num_workers', type=int, default=0, help='num_workers')
-parser.add_argument('--NeedFoldk', type=bool, default=True, help='NeedFoldk')
-parser.add_argument('--isTrain', type=bool, default=True, help='CTransPath, RN50-B')
+parser.add_argument('--data_name', type=str, help='Name of the dataset used for training the VAE (e.g., DAPI).')
+parser.add_argument('--path_root', type=str, help='Root directory where dataset files are stored.')
+parser.add_argument('--img_size', type=int, default=256, help='Image size.')
+parser.add_argument('--batchsize', type=int, default=32, help='Batch size for training.')
+parser.add_argument('--num_workers', type=int, default=8, help='Number of worker processes for data loading.')
 args = parser.parse_args()
 
 
@@ -38,11 +37,9 @@ if __name__ == "__main__":
     gpus = [0] if torch.cuda.is_available() else None
 
 
-    ds_3 = DatasetFoldk(
-        foldk=1,
-        NeedFoldk=False,
-        isTrain = True,
-        path_root = args.path_root 
+    ds_3 = Dataset_Paired(
+        path_root = args.path_root,
+        image_resize = args.img_size
     )
 
     dm = SimpleDataModule(

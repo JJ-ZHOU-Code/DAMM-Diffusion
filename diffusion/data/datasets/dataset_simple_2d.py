@@ -11,16 +11,12 @@ from PIL import Image
 import torchvision.transforms.functional as TF
 from random import random
 
-class DatasetFoldk(data.Dataset):
+class Dataset_Paired(data.Dataset):
     def __init__(
         self,
         path_root,
-        foldk = 1,
-        NeedFoldk = True,
-        isTrain = True,
         transform = None,
         image_resize = None,
-        image_crop = None,
     ):
         super().__init__()
         self.path_root = path_root
@@ -29,16 +25,10 @@ class DatasetFoldk(data.Dataset):
             raise Exception(f"[!] dataset is not exited")
 
         self.image_file_name = sorted(os.listdir(os.path.join(self.path_root, 'QD')))
-        if NeedFoldk:
-            if isTrain:
-                self.image_file_name = [file for file in self.image_file_name if not file.startswith(f"IMG{foldk}_")]
-            if not isTrain:
-                self.image_file_name = [file for file in self.image_file_name if file.startswith(f"IMG{foldk}_")]
         
         if transform is None: 
             self.transform = T.Compose([
                 T.Resize(image_resize) if image_resize is not None else nn.Identity(),
-                T.CenterCrop(image_crop) if image_crop is not None else nn.Identity(),
                 T.ToTensor(),
                 T.Normalize(mean=0.5, std=0.5) # WARNING: mean and std are not the target values but rather the values to subtract and divide by: [0, 1] -> [0-0.5, 1-0.5]/0.5 -> [-1, 1]
             ])

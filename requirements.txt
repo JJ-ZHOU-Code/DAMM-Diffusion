@@ -1,0 +1,16 @@
+einops==0.4.1
+lpips==0.1.4
+monai==1.2.0
+numpy==1.23.5
+pandas==2.0.3
+Pillow==9.5.0
+Pillow==11.1.0
+pytorch_lightning==1.9.5
+pytorch_msssim==1.0.0
+streamlit==1.43.1
+torch==2.0.1
+torch_fidelity==0.3.0
+torchio==0.20.4
+torchmetrics==1.1.2
+torchvision==0.15.2
+tqdm==4.65.0

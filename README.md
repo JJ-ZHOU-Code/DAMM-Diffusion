@@ -6,20 +6,10 @@
   <a href="https://openaccess.thecvf.com/content/ICCV2023/papers/Xu_Multimodal_Optimal_Transport-based_Co-Attention_Transformer_with_Global_Structure_Consistency_for_ICCV_2023_paper.pdf" target="blank">[paper]</a> -->
   <br><em>Junjie Zhou, Shouju Wang, Yuxia Tang, Qi Zhu, Daoqiang Zhang, WEI SHAO</em></br>
 </summary>
-<!-- 
-```bash
-@InProceedings{Xu_2023_ICCV,
-    author    = {Xu, Yingxue and Chen, Hao},
-    title     = {Multimodal Optimal Transport-based Co-Attention Transformer with Global Structure Consistency for Survival Prediction},
-    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
-    month     = {October},
-    year      = {2023},
-    pages     = {21241-21251}
-}
-``` -->
+
 </details>
 
-<img src="assets/Figure_DAMMDiffusion.jpg" width="1500px" align="center" />
+<img src="assets/Figure_overview.jpg" width="1500px" align="center" />
 
 **Summary:** Here is the official implementation of the paper "DAMM-Diffusion: Learning Divergence-Aware Multi-Modal Diffusion Model for Nanoparticles Distribution Prediction".
 

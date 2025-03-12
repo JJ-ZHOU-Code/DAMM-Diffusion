@@ -74,6 +74,7 @@ python train_diffusion.py --data_name <DATA_NAME> --path_root <PATH_ROOT> --img_
 ## Acknowledgement
 We would like to thank the following repositories for their great works:
 - [medfusion](https://github.com/mueller-franzes/medfusion)
+- [ddpm](https://github.com/mueller-franzes/medfusion?tab=readme-ov-file)
 
 <!-- ## License & Citation
 This project is licensed under the Apache-2.0 License.

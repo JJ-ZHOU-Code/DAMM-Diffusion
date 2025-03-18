@@ -1,5 +1,4 @@
 import os
-os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 
 from email.mime import audio
 from pathlib import Path
@@ -137,9 +136,6 @@ if __name__ == "__main__":
         img_condition_name=['CD31','DAPI']  # 'CD31','DAPI'
     )
     
-    # pipeline_old = pipeline.load_from_checkpoint('runs/2022_11_27_085654_chest_diffusion/last.ckpt')
-    # pipeline.noise_estimator.load_state_dict(pipeline_old.noise_estimator.state_dict(), strict=True)
-
     # -------------- Training Initialization ---------------
     to_monitor = "train/loss"  # "pl/val_loss" 
     min_max = "min"

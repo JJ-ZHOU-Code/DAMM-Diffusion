@@ -1,5 +1,4 @@
 import os
-os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 
 from pathlib import Path
 from datetime import datetime
@@ -58,9 +57,9 @@ if __name__ == "__main__":
         emb_channels=8,
         spatial_dims=2,
         num_embeddings = 16384, # 8192,
-        hid_chs =    [ 64, 128, 256,  256, 512], # [ 64, 128, 256,  512]
-        kernel_sizes=[ 3,  3,   3,    3, 3], # [ 3,  3,   3,  3]  除第一个外，其余每个下采样为原来二分之一
-        strides =    [ 1,  2,   2,    2, 2], # [ 1,  2,   2,  2]
+        hid_chs =    [ 64, 128, 256,  256, 512], 
+        kernel_sizes=[ 3,  3,   3,    3, 3], 
+        strides =    [ 1,  2,   2,    2, 2], 
         deep_supervision=1,
         use_attention= 'none',
         # loss = torch.nn.MSELoss,
